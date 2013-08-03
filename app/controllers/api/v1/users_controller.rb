@@ -30,4 +30,45 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def all_areas
+    @areas = Area.select([:id, :name]);
+    logger.info "=======================================#{@areas.inspect}"
+    respond_with do |format|
+      if(User.find_by_auth_key(params[:auth_key]))
+        format.json {render :json => {:success => true, :area => @areas }}
+      else
+        format.json {render :json => {:success => false, :message => "invalid auth key"}}
+      end
+    end
+  end
+
+  def get_buddies
+    @user = User.find_by_auth_key(params[:auth_key])
+    respond_with do |format|
+      if(@user)
+        @area = Area.select([:id, :name]).find(params[:id])
+        @user.update_attributes(:area_id => @area.id)
+        users = @area.users.where("id NOT IN (?)", @user.id).select([:id, :name])
+        format.json {render :json => {:success => true, :users => users, :area => @area }}
+      else
+        format.json {render :json => {:success => false, :message => "invalid auth key"}}
+      end
+    end
+  end
+
+  def send_message
+    @user = User.find_by_auth_key(params[:auth_key])
+    respond_with do |format|
+      if(@user)
+        @area = Area.select([:id, :name]).find(params[:id])
+        @user.update_attributes(:area_id => @area.id)
+        users = @area.users.where("id NOT IN (?)", @user.id).select([:id, :name])
+        format.json {render :json => {:success => true, :users => users, :area => @area }}
+      else
+        format.json {render :json => {:success => false, :message => "invalid auth key"}}
+      end
+    end
+  end
+
+
 end

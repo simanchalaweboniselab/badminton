@@ -6,10 +6,12 @@ Badminton::Application.routes.draw do
       resources :users, :only => []do
         post :sign_up, :on => :collection
         post :log_in, :on => :collection
-      end
-      resources :areas, :only => [] do
         post :all_areas, :on => :collection
+        post :get_buddies, :on => :collection
       end
+      #resources :areas, :only => [] do
+      #  post :all_areas, :on => :collection
+      #end
     end
   end
 
