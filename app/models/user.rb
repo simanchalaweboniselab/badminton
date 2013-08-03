@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :area_id, :auth_key, :email, :name, :password, :phone_number
+  attr_accessible :area_id, :auth_key, :email, :name, :password, :phone_number, :secret
   belongs_to :area
   has_many :receivers
   has_many :messages, :through => :receivers
@@ -27,5 +27,10 @@ class User < ActiveRecord::Base
       @users.push(hash);
     end
     @users
+  end
+
+  def self.encrypt_password(password, secret)
+    a = ActiveSupport::MessageEncryptor.new(secret)
+    password = a.encrypt(password);
   end
 end

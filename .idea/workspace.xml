@@ -38,7 +38,16 @@
       <file leaf-file-name="users_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="10" selection-start="2531" selection-end="2531" vertical-scroll-proportion="-0.5885417">
+            <state line="77" column="70" selection-start="3281" selection-end="3281" vertical-scroll-proportion="-0.22395833">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20130803213949_add_secret_to_users.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20130803213949_add_secret_to_users.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="0" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -74,7 +83,7 @@
       <file leaf-file-name="user.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
+            <state line="1" column="87" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -732,13 +741,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="12" selection-start="796" selection-end="796" vertical-scroll-proportion="0.582343">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="13" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0" />
@@ -828,16 +830,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20130803213949_add_secret_to_users.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
+        <state line="1" column="87" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="10" selection-start="2531" selection-end="2531" vertical-scroll-proportion="-0.5885417">
+        <state line="77" column="70" selection-start="3281" selection-end="3281" vertical-scroll-proportion="-0.22395833">
           <folding />
         </state>
       </provider>

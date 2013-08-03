@@ -3,9 +3,10 @@ class Api::V1::UsersController < ApplicationController
   respond_to :json
 
   def sign_up
-    logger.info "====================================#{params.inspect}";
     key = (0...15).map{ ('a'..'z').to_a[rand(26)] }.join;
-    @user = User.new(:name => params[:name], :email => params[:email], :password => params[:password],:phone_number => params[:phone_number], :auth_key => key);
+    secret = Digest::SHA1.hexdigest(key);
+    password = User.encrypt_password(params[:password], secret)
+    @user = User.new(:name => params[:name], :email => params[:email], :password => password,:phone_number => params[:phone_number], :auth_key => key, :secret => secret);
     respond_with do |format|
       if @user.save
         format.json {render :json => {:success => true, :message => "registration successfully",:auth_key => @user.auth_key,:phone_number => @user.phone_number, :name => @user.name, :email => @user.email }}
@@ -20,12 +21,17 @@ class Api::V1::UsersController < ApplicationController
   def log_in
     @user = User.find_by_email(params[:email]);
     respond_with do |format|
-      if(@user &&  @user.password == params[:password])
-        @user.update_attributes(:auth_key => (0...15).map{ ('a'..'z').to_a[rand(26)] }.join);
-        format.json {render :json => {:success => true, :message => "login successfully", :auth_key => @user.auth_key,:phone_number => @user.phone_number, :name => @user.name, :email => @user.email }}
+      if(@user)
+        a = ActiveSupport::MessageEncryptor.new(@user.secret)
+        password = a.decrypt(@user.password)
+        if(password == params[:password])
+          @user.update_attributes(:auth_key => (0...15).map{ ('a'..'z').to_a[rand(26)] }.join);
+          format.json {render :json => {:success => true, :message => "login successfully", :auth_key => @user.auth_key,:phone_number => @user.phone_number, :name => @user.name, :email => @user.email }}
+        else
+          format.json {render :json => {:success => false, :message => "password doesn't match."}}
+        end
       else
-        message = @user ? "password doesn't match." : "email not found.";
-        format.json {render :json => {:success => false, :message => message}}
+        format.json {render :json => {:success => false, :message => "email not found."}}
       end
     end
   end
@@ -71,7 +77,7 @@ class Api::V1::UsersController < ApplicationController
         @message = Message.create(:content => params[:message], :sender_id => @user.id)
         Receiver.create_receiver(users,@message.id) if (!users.empty?)
         count = users.empty? ? 0 : users.count
-        message = "cool your message to sent #{count} buddies is sent."
+        message = "cool! your message to sent #{count} buddies is sent."
         format.json {render :json => {:success => true, :message => message }}
       else
         message = @user ? "message can't be blank" : "invalid auth key"
