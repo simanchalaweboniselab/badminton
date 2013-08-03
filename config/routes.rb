@@ -8,6 +8,9 @@ Badminton::Application.routes.draw do
         post :log_in, :on => :collection
         post :all_areas, :on => :collection
         post :get_buddies, :on => :collection
+        post :send_message, :on => :collection
+        post :my_messages, :on => :collection
+        post :get_courts, :on => :collection
       end
       #resources :areas, :only => [] do
       #  post :all_areas, :on => :collection
