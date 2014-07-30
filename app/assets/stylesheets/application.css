@@ -12,7 +12,19 @@
  *= require_tree .
  */
 .title{
-    font-size: 100px;
+    color: #81E2DC;
+    font-size: 73px;
     font-weight: bold;
-    color: #81e2dc;
+    margin-right: -204px;
+    margin-top: 200px;
+}
+.bodybackground{
+    background: url("geek.jpg") ;
+}
+.members{
+    color: green;
+    margin-right: -231px;
+    margin-top: 56px;
+    padding-top: 2px;
+    text-align: center;
 }
